@@ -1,0 +1,8 @@
+---
+
+- name: Install Munki Reports
+  hosts: all
+  user: ec2-user
+  sudo: yes
+  roles:
+    - munkireports

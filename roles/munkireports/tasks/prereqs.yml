@@ -1,0 +1,48 @@
+---
+
+- name: Install all prereqs
+  yum:
+    name={{ item }}
+    state=present
+    enablerepo=epel
+  with_items:
+    - httpd
+    - php
+    - php-pdo
+    - libxml2
+    - git
+
+- name: Clone Munkireport-php
+  git:
+    repo=https://github.com/munkireport/munkireport-php.git
+    dest=/var/www/html
+
+- name: Create config.php
+  copy:
+    src=config.php
+    dest=/var/www/html/config.php
+    owner=apache
+    group=apache
+    mode=0644
+  notify: Restart apache
+
+- name: Adjust permissions
+  file:
+    path=/var/www/html/app/db
+    mode=755
+    owner=apache
+    group=apache
+    recurse=yes
+
+- name: Adjust permissions
+  file:
+    path=/var/www/html/
+    owner=apache
+    group=apache
+    recurse=yes
+
+- name: Start Apache
+  service:
+    name=httpd
+    state=started
+    enabled=yes
