@@ -1,0 +1,7 @@
+rds_username:
+rds_password:
+rds_host_url:
+rds_db_name:
+munki_reports_sitename:
+munki_reports_admin_username:
+munki_reports_admin_password_hash:

@@ -1,0 +1,23 @@
+<?php
+
+$conf['index_page'] = 'index.php?';
+$conf['sitename'] = '{{ munki_reports_sitename }}';
+$conf['allow_migrations'] = TRUE;
+$conf['debug'] = TRUE;
+$conf['timezone'] = @date_default_timezone_get(America/Chicago);
+$conf['vnc_link'] = "vnc://%s:5900";
+$conf['ssh_link'] = "ssh://ladmin@%s";
+ini_set('session.cookie_lifetime', 43200);
+$conf['locale'] = 'en_US';
+$conf['lang'] = 'en';
+$conf['keep_previous_displays'] = TRUE;
+
+
+$auth_config['{{ munki_reports_admin_username }}'] = '{{ munki_reports_admin_password_hash }}';
+
+$conf['pdo_dsn'] = 'mysql:host={{ rds_host_url }};dbname={{ rds_db_name }}';
+$conf['pdo_user'] = '{{ rds_username }}';
+$conf['pdo_pass'] = '{{ rds_password }}';
+$conf['pdo_opts'] = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
+
+?>
